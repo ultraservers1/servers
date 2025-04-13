@@ -162,7 +162,7 @@ configurar_nginx() {
     cat > /etc/nginx/sites-available/pterodactyl <<EOL
 server {
     listen 80;
-    server_name $DOMINIO 192.168.36.94;
+    server_name $DOMINIO;
     root /var/www/pterodactyl/public;
     index index.php index.html index.htm;
     location / {
@@ -219,7 +219,7 @@ EOL
 # Função para salvar credenciais
 salvar_credenciais() {
     progress_bar 3 "Salvando credenciais"
-    echo "URL: http://$DOMINIO ou http://192.168.36.94" > $CRED_FILE
+    echo "URL: http://$DOMINIO" > $CRED_FILE
     echo "Usuário: $ADMIN_EMAIL" >> $CRED_FILE
     echo "Senha: $ADMIN_PASS" >> $CRED_FILE
     echo "Banco de Dados: $PANEL_DB" >> $CRED_FILE
@@ -297,7 +297,7 @@ alterar_dominio() {
         cat > /etc/nginx/sites-available/pterodactyl <<EOL
 server {
     listen 80;
-    server_name $DOMINIO 192.168.36.94;
+    server_name $DOMINIO;
     root /var/www/pterodactyl/public;
     index index.php index.html index.htm;
     location / {
@@ -340,7 +340,7 @@ instalar_tudo() {
     configurar_https
     salvar_credenciais
     echo -e "${GREEN}Instalação finalizada com sucesso!${RESET}" | tee -a $LOG_FILE
-    echo -e "${GREEN}Acesse o painel em: http://$DOMINIO ou http://192.168.36.94${RESET}" | tee -a $LOG_FILE
+    echo -e "${GREEN}Acesse o painel em: http://$DOMINIO ${RESET}" | tee -a $LOG_FILE
     echo -e "${YELLOW}Credenciais:${RESET}" | tee -a $LOG_FILE
     cat $CRED_FILE | tee -a $LOG_FILE
     echo -e "${CYAN}🎉 Parabéns! Você agora comanda um servidor ULTRA poderoso! 🚀${RESET}" | tee -a $LOG_FILE
